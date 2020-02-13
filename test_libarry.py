@@ -30,4 +30,4 @@ class TestPodcast(unittest.TestCase):
         print('in %s - %s()' % (currentTest, callingFunction))
 
     def test_van_darkholme(self):
-        print('fuck you too')
+        print('fuck you')
