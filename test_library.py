@@ -6,7 +6,7 @@ import inspect
 from abc import abstractmethod
 
 class TestLibrary(unittest.TestCase):
-    """A class that holds the tests to be run
+    """A class that holds the tests to be run for the library Class
 
 
         Roy Ortega - A01078553
@@ -34,9 +34,12 @@ class TestLibrary(unittest.TestCase):
         """TP-010A Tests successful creation of a library class"""
         self.assertIsInstance(self.library_default, Library)
 
+
     def test_constructor_valid(self):
         """TP-010B Tests for a valid parameter """
         self.assertRaises(ValueError, Library, 'test', 'test')
+
+
 
 
 if __name__ == '__main__':
