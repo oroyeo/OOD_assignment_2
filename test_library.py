@@ -30,5 +30,5 @@ class TestLibrary(unittest.TestCase):
         callingFunction = inspect.stack()[1][3]
         print('in %s - %s()' % (currentTest, callingFunction))
 
-    def test_van_darkholme(self):
-        print('fuck you')
+    def test_constructor_valid(self):
+        """TP-010A Tests successful creation of a library class"""
