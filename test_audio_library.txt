@@ -1,0 +1,62 @@
+Test plan
+
+test_library_construction:
+tests if library created is of a library instance
+
+test_constructor_valid:
+tests for valid parameters for creation of library
+
+test_library_name_valid:
+tests if getting the library name returns a string
+
+test_library_name_invalid:
+tests an invalid setter for the name attribute
+
+test_artists_valid:
+tests if the artist getter returns a list of artists
+
+test_add_audio_file:
+checks if audio file appears within the list of audio files
+
+test_add_audio_file_invalid:
+tests adding an audio file as a string. should raise a value error
+
+test_remove_audio_file_valid:
+adds and removes a song to the library. passes when the sound isn't found
+
+test_remove_audio_file_invalid:
+raises an audio file if an object is not passed through the parameter
+
+test_add_playlist_valid:
+adds a playlist to the library and passes if its inside it
+
+test_add_playlist_invalid:
+enters an invalid argument. raises a value error
+
+test_remove_playlist_valid:
+passes if the playlist does not appear within the library
+
+test_remove_playlist_invalid:
+raises a value error for an invalid argument for the remove_playlist method
+
+test_like_audio_file_valid:
+passes if the audio file is in the liked_audio_files list
+
+test_like_audio_file_invalid:
+raises a value error for invalid argument
+
+test_unlike_audio_file_valid:
+passes if the file is no longer within the like_songs list
+
+test_unlike_audio_file_invalid:
+raises value error for invalid argument
+
+test_serach_valid:
+passes if file appears in the library when added
+
+def_test_get_number_of_audio_files_valid:
+passes if returns int
+
+test_get_number_of_audio_files_invalid
+fails if returns non int type
+
