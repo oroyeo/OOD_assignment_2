@@ -51,7 +51,6 @@ class AudioLibrary:
                        len(self._audio_files),
                        len(self._songs),
                        len(self._podcasts))
-
         else:
             if len(self._podcasts) == 1:
                 description = "The library '{}' has {} audio files, ({} songs and {} podcasts)" \
@@ -105,15 +104,22 @@ class AudioLibrary:
 
     def remove_audio_file(self, filename):
         """Removes an audio file from the library and its respective subclass list"""
-        if type(filename) == AudioFile and filename in self._audio_files:
+        if not isinstance(filename, AudioFile):
+            raise ValueError('Entered filename is not an audiofile')
+        if filename in self._audio_files:
             self._audio_files.remove(filename)
-            if type(filename) == Song and filename in self._songs:
-                self._songs.remove(filename)
-            elif type(filename) == Podcast and filename in self._podcasts:
-                self._podcasts.remove(filename)
+            self.__remove_song_helper(filename)
+            self.__remove_podcast_helper(filename)
         else:
-            raise ValueError('Entered filename is not an audio file')
+            print('File does not exist in your library')
 
+    def __remove_song_helper(self, filename):
+        if isinstance(filename, Song):
+            self._songs.remove(filename)
+
+    def __remove_podcast_helper(self, filename):
+        if isinstance(filename, Podcast):
+            self._podcasts.remove(filename)
 
     def add_playlist(self, playlist):
         """Adds a playlist to the library"""
