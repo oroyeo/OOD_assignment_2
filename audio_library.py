@@ -5,7 +5,8 @@ from song import Song
 from playlist import Playlist
 from podcast import Podcast
 
-class AudioLibrary():
+
+class AudioLibrary:
     """ Represents an abstract audio library, this is a subclass of the
         AudioFile class
 
@@ -134,7 +135,29 @@ class AudioLibrary():
         else:
             raise ValueError('argument is not a playlist object')
 
+    def like_audio_file(self, audio_file: AudioFile):
+        pass
 
+    def unlike_audio_file(self, audio_file: AudioFile):
+        pass
 
+    def search(self, search_term: str):
+        pass
 
+    def get_number_of_audio_files(self) -> int:
+        pass
 
+    def list_audio_file(self) -> list:
+        pass
+
+    def list_podcasts(self) -> list:
+        pass
+
+    def list_songs(self) -> list:
+        pass
+
+    def get_library_info(self) -> str:
+        pass
+
+    def get_recently_played(self) -> list:
+        pass
