@@ -34,7 +34,7 @@ class Playlist:
 
 
     @name.setter
-    def name(self, new_name:str):
+    def name(self, new_name: str):
         """Sets a new name for this specific playlist instance"""
         if type(new_name) == str:
             self._name = new_name

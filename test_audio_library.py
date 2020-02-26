@@ -23,7 +23,6 @@ class TestLibrary(unittest.TestCase):
         """Introduces an end log point for each test"""
         self.logPoint()
 
-
     def logPoint(self):
         """Creates the log point function to be run after each set up and tear down"""
         currentTest = self.id().split('.')[-1]
@@ -33,7 +32,6 @@ class TestLibrary(unittest.TestCase):
     def test_library_construction(self):
         """TP-010A Tests successful creation of a library class"""
         self.assertIsInstance(self.library, Library)
-
 
     def test_constructor_valid(self):
         """TP-010B Tests for a valid parameter"""
@@ -47,7 +45,6 @@ class TestLibrary(unittest.TestCase):
         """TP-020A Tests for a valid parameter"""
         with self.assertRaises(ValueError):
             self.library.name = 5
-
 
     def test_artist_valid(self):
         """TP-030A Tests for a valid paramenter"""
@@ -73,7 +70,6 @@ class TestLibrary(unittest.TestCase):
         """TP-050B Tests for an invalid parameter"""
         with self.assertRaises(ValueError):
             self.library.remove_audio_file("bad_test")
-
 
     def test_add_playlist_valid(self):
         """TP-060A Tests for a valid parameter"""

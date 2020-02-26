@@ -2,6 +2,7 @@ from typing import Dict
 from datetime import datetime, time
 from audio_file import AudioFile
 
+
 class Podcast(AudioFile):
     """ Represents an abstract podcast, this is a subclass of the
         AudioFile class
