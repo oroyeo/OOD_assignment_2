@@ -142,28 +142,54 @@ class AudioLibrary:
             raise ValueError('argument is not a playlist object')
 
     def like_audio_file(self, audio_file: AudioFile):
-        pass
+        """Add Audio File to the "Liked" list"""
+        if audio_file not in self._audio_files:
+            raise ValueError('Audio File does not exist, please check the spelling of your Audio File')
+        self._liked_audio_files.append(audio_file)
 
     def unlike_audio_file(self, audio_file: AudioFile):
-        pass
+        """Removes Audio File from the "Liked" list"""
+        if audio_file not in self._liked_audio_files:
+            raise ValueError('Audio File is not in the liked list, please check the spelling of your Audio File')
+        self._liked_audio_files.remove(audio_file)
 
     def search(self, search_term: str):
+        """Removes Audio File from the "Liked" list"""
         pass
 
     def get_number_of_audio_files(self) -> int:
-        pass
+        """Retrieves the total number of Audio Files in the Library instance"""
+        return len(self._audio_files)
 
     def list_audio_file(self) -> list:
+        """Lists all the Audio Files"""
         pass
 
     def list_podcasts(self) -> list:
+        """Lists all the Podcasts"""
         pass
 
     def list_songs(self) -> list:
-        pass
+        """Lists all the Songs"""
+        posn = 0
+        song_list = []
+        print("   {:20} {:20} {:20} {}".format('Title', 'Artist', 'Album', 'Runtime'))
+        while posn < len(self._songs):
+            current_song = self._songs[posn]
+            current_song = current_song.meta_data()
+            number = posn + 1
+            title = current_song['title']
+            artist = current_song['artist']
+            album = current_song['album']
+            runtime = current_song['runtime']
+            song_list.append("{}. {:<20} {:<20} {:<20} {}".format(number, title, artist, album, runtime))
+            posn += 1
+        return song_list
 
     def get_library_info(self) -> str:
+        """Formatted string of Audio Files, Podcasts, and Song count"""
         pass
 
     def get_recently_played(self) -> list:
+        """Retrieves a list of the most recently played Audio Files in order"""
         pass
