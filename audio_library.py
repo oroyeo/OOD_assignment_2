@@ -34,30 +34,32 @@ class AudioLibrary:
         """Could be the 'get_library_info' function since it returns the formatted string"""
         description = ''
         if len(self._songs) == 1:
-            description = "The library '{}' has {} audio files, ({} song and {} podcasts)"\
+            description = "The library '{}' has {} audio file(s), ({} song and {} podcasts)"\
                 .format(self._library_name,
                        len(self._audio_files),
                        len(self._songs),
                        len(self._podcasts))
         if len(self._podcasts) == 1:
-            description = "The library '{}' has {} audio files, ({} songs and {} podcast)"\
+            description = "The library '{}' has {} audio file(s), ({} songs and {} podcast)"\
                 .format(self._library_name,
                        len(self._audio_files),
                        len(self._songs),
                        len(self._podcasts))
         if len(self._podcasts) == 1 and len(self._songs) == 1:
-            description = "The library '{}' has {} audio files, ({} song and {} podcast)"\
+            description = "The library '{}' has {} audio file(s), ({} song and {} podcast)"\
                 .format(self._library_name,
                        len(self._audio_files),
                        len(self._songs),
                        len(self._podcasts))
-        else:
-            if len(self._podcasts) == 1:
-                description = "The library '{}' has {} audio files, ({} songs and {} podcasts)" \
-                    .format(self._library_name,
-                            len(self._audio_files),
-                            len(self._songs),
-                            len(self._podcasts))
+        if len(self._podcasts) == 1:
+            description = "The library '{}' has {} audio files, ({} songs and {} podcasts)" \
+                .format(self._library_name,
+                        len(self._audio_files),
+                        len(self._songs),
+                        len(self._podcasts))
+        if len(self._audio_files) == 0:
+            description = "The library '{}' has 0 audio files, (0 songs and 0 podcasts)".format(self._library_name)
+
         return description
 
     @staticmethod
