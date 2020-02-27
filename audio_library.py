@@ -204,10 +204,6 @@ class AudioLibrary:
     def get_library_info(self) -> str:
         pass
 
-<<<<<<< Updated upstream
-    def get_recently_played(self) -> list:
-        pass
-=======
     def get_recently_played(self):
         num = 1
         if len(self._recently_played) > 0:
@@ -219,4 +215,4 @@ class AudioLibrary:
             print('You have no recently played songs')
 
     """ROY HAS A BIG DELICIOUS COCK"""
->>>>>>> Stashed changes
+
