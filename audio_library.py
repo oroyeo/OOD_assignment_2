@@ -144,28 +144,79 @@ class AudioLibrary:
             raise ValueError('argument is not a playlist object')
 
     def like_audio_file(self, audio_file: AudioFile):
-        pass
+        """Likes an audio file and adds it to the list"""
+        if isinstance(audio_file, AudioFile):
+            if audio_file not in self._liked_audio_files:
+                self._liked_audio_files.append(audio_file)
+            else:
+                print('Audio file is already liked')
+        else:
+            raise ValueError('Argument is not an audio file')
 
     def unlike_audio_file(self, audio_file: AudioFile):
-        pass
+        """Unlikes an audio file by removing it from the liked audio files list"""
+        if isinstance(audio_file, AudioFile):
+            if audio_file in self._liked_audio_files:
+                self._liked_audio_files.remove(audio_file)
+            else:
+                print('Audio file is not liked')
+        else:
+            raise ValueError('Argument is not an audio file')
 
     def search(self, search_term: str):
         pass
 
     def get_number_of_audio_files(self) -> int:
-        pass
+        return len(self._audio_files)
 
-    def list_audio_file(self) -> list:
-        pass
+    def list_audio_file(self):
+        num = 1
+        if len(self._audio_files) > 0:
+            print('Your current audio files are:')
+            for file in self._audio_files:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You currently have no audio files')
 
-    def list_podcasts(self) -> list:
-        pass
 
-    def list_songs(self) -> list:
-        pass
+    def list_songs(self):
+        num = 1
+        if len(self._songs) > 0:
+            print('Your current audio files are:')
+            for file in self._songs:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You currently have no songs')
 
+    def list_podcasts(self):
+        num = 1
+        if len(self._podcasts) > 0:
+            print('Your current audio files are:')
+            for file in self._podcasts:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You currently have no podcasts')
+
+    # should we just delete this as we have a __str__ method?
     def get_library_info(self) -> str:
         pass
 
+<<<<<<< Updated upstream
     def get_recently_played(self) -> list:
         pass
+=======
+    def get_recently_played(self):
+        num = 1
+        if len(self._recently_played) > 0:
+            print('Your recently played audio files are:')
+            for file in self._recently_played:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You have no recently played songs')
+
+    """ROY HAS A BIG DELICIOUS COCK"""
+>>>>>>> Stashed changes
