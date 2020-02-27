@@ -29,28 +29,27 @@ class AudioLibrary:
         self._recently_played = []
         self._artists = []
 
-
     def __str__(self) -> str:
         """Could be the 'get_library_info' function since it returns the formatted string"""
         description = ''
         if len(self._songs) == 1:
-            description = "The library '{}' has {} audio file(s), ({} song and {} podcasts)"\
+            description = "The library '{}' has {} audio file(s), ({} song and {} podcasts)" \
                 .format(self._library_name,
-                       len(self._audio_files),
-                       len(self._songs),
-                       len(self._podcasts))
+                        len(self._audio_files),
+                        len(self._songs),
+                        len(self._podcasts))
         if len(self._podcasts) == 1:
-            description = "The library '{}' has {} audio file(s), ({} songs and {} podcast)"\
+            description = "The library '{}' has {} audio file(s), ({} songs and {} podcast)" \
                 .format(self._library_name,
-                       len(self._audio_files),
-                       len(self._songs),
-                       len(self._podcasts))
+                        len(self._audio_files),
+                        len(self._songs),
+                        len(self._podcasts))
         if len(self._podcasts) == 1 and len(self._songs) == 1:
-            description = "The library '{}' has {} audio file(s), ({} song and {} podcast)"\
+            description = "The library '{}' has {} audio file(s), ({} song and {} podcast)" \
                 .format(self._library_name,
-                       len(self._audio_files),
-                       len(self._songs),
-                       len(self._podcasts))
+                        len(self._audio_files),
+                        len(self._songs),
+                        len(self._podcasts))
         if len(self._podcasts) == 1:
             description = "The library '{}' has {} audio files, ({} songs and {} podcasts)" \
                 .format(self._library_name,
@@ -144,6 +143,7 @@ class AudioLibrary:
             raise ValueError('argument is not a playlist object')
 
     def like_audio_file(self, audio_file: AudioFile):
+
         """Likes an audio file and adds it to the list"""
         if isinstance(audio_file, AudioFile):
             if audio_file not in self._liked_audio_files:
@@ -163,10 +163,13 @@ class AudioLibrary:
         else:
             raise ValueError('Argument is not an audio file')
 
+
     def search(self, search_term: str):
+        """Removes Audio File from the "Liked" list"""
         pass
 
     def get_number_of_audio_files(self) -> int:
+
         return len(self._audio_files)
 
     def list_audio_file(self):
@@ -200,9 +203,12 @@ class AudioLibrary:
         else:
             print('You currently have no podcasts')
 
+
     # should we just delete this as we have a __str__ method?
     def get_library_info(self) -> str:
+        """Formatted string of Audio Files, Podcasts, and Song count"""
         pass
+
 
     def get_recently_played(self):
         num = 1
