@@ -4,6 +4,11 @@ from audio_file import AudioFile
 from song import Song
 from playlist import Playlist
 from podcast import Podcast
+import os
+os.add_dll_directory(r'C:\Program Files\VideosLAN\VLC')
+import eyed3
+from time import sleep
+import vlc
 
 
 class AudioLibrary:
@@ -32,9 +37,15 @@ class AudioLibrary:
 
     def __str__(self) -> str:
         """Could be the 'get_library_info' function since it returns the formatted string"""
-        description = ''
+        description = "The library '{}' has 0 audio files, (0 songs and 0 podcasts)".format(self._library_name)
         if len(self._songs) == 1:
             description = "The library '{}' has {} audio file(s), ({} song and {} podcasts)"\
+                .format(self._library_name,
+                       len(self._audio_files),
+                       len(self._songs),
+                       len(self._podcasts))
+        if len(self._songs) > 1:
+            description = "The library '{}' has {} audio file(s), ({} songs and {} podcasts)"\
                 .format(self._library_name,
                        len(self._audio_files),
                        len(self._songs),
@@ -51,15 +62,19 @@ class AudioLibrary:
                        len(self._audio_files),
                        len(self._songs),
                        len(self._podcasts))
-        if len(self._podcasts) == 1:
-            description = "The library '{}' has {} audio files, ({} songs and {} podcasts)" \
+        if len(self._songs) == 1:
+            description = "The library '{}' has {} audio file(s), ({} song and {} podcasts)"\
                 .format(self._library_name,
-                        len(self._audio_files),
-                        len(self._songs),
-                        len(self._podcasts))
-        if len(self._audio_files) == 0:
-            description = "The library '{}' has 0 audio files, (0 songs and 0 podcasts)".format(self._library_name)
-
+                       len(self._audio_files),
+                       len(self._songs),
+                       len(self._podcasts))
+        if len(self._songs) > 1:
+            description = "The library '{}' has {} audio file(s), ({} song and {} podcasts)"\
+                .format(self._library_name,
+                       len(self._audio_files),
+                       len(self._songs),
+                       len(self._podcasts))
+            
         return description
 
     @staticmethod
@@ -169,3 +184,38 @@ class AudioLibrary:
 
     def get_recently_played(self) -> list:
         pass
+
+    def load(self, path):
+        songs_list = os.listdir(path)
+        for file in songs_list:
+            mp3_path = os.path.join(os.path.join(os.getcwd(), path), file)
+            mp3_file = eyed3.load(os.path.join(os.path.join(os.getcwd(), path), file))
+            runtime = mp3_file.info.time_secs
+            mins = int(runtime // 60)
+            secs = int(runtime % 60)
+            runtime = "{}:{}".format(mins, secs)
+            temp = []
+            temp.append(getattr(mp3_file.tag, 'title'))
+            temp.append(getattr(mp3_file.tag, 'artist'))
+            temp.append(runtime)
+            temp.append(mp3_path)
+            temp.append(getattr(mp3_file.tag, 'album'))
+            temp.append(getattr(mp3_file.tag, 'genre'))
+            print(temp)
+            tags = ['title', 'artist', 'album', 'genre']
+
+            for field in tags:
+                value = getattr(mp3_file.tag, field)
+                print(f'{field} = {value}')
+            
+            temp[0] = Song(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5].name)
+
+            print(f'runtime = {runtime} seconds')
+
+            self.add_audio_file(temp[0])
+        
+
+if __name__ == "__main__":
+    lib1 = AudioLibrary("test")
+    lib1.load(r'C:\Users\llone\Desktop\BCIT LEVEL 1\ACIT 2515\assignment 1\OOD_assignment_2\Music')
+    print(lib1)

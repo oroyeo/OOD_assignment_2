@@ -11,7 +11,7 @@ class Song(AudioFile):
     Date: January 31, 2020
     """
 
-    def __init__(self, title: str, artist: str, runtime: str, path_name: str, album: str, genre: List = None):
+    def __init__(self, title: str, artist: str, runtime: str, path_name: str, album: str, genre: str = None):
         """Creates an object instance of the song subclass"""
         super().__init__(title, artist, runtime, path_name)
         self._album = album
@@ -24,8 +24,8 @@ class Song(AudioFile):
         """Validates the song specific arguments"""
         if type(album) != str:
             raise ValueError('Album must be a string')
-        elif genre is not None and (type(genre) != list):
-            raise ValueError('Genre must either not be included or a list')
+        elif genre is not None and (type(genre) != str):
+            raise ValueError('Genre must either not be included or a string')
         else:
             return True
 
