@@ -143,56 +143,82 @@ class AudioLibrary:
             raise ValueError('argument is not a playlist object')
 
     def like_audio_file(self, audio_file: AudioFile):
-        """Add Audio File to the "Liked" list"""
-        if audio_file not in self._audio_files:
-            raise ValueError('Audio File does not exist, please check the spelling of your Audio File')
-        self._liked_audio_files.append(audio_file)
+
+        """Likes an audio file and adds it to the list"""
+        if isinstance(audio_file, AudioFile):
+            if audio_file not in self._liked_audio_files:
+                self._liked_audio_files.append(audio_file)
+            else:
+                print('Audio file is already liked')
+        else:
+            raise ValueError('Argument is not an audio file')
 
     def unlike_audio_file(self, audio_file: AudioFile):
-        """Removes Audio File from the "Liked" list"""
-        if audio_file not in self._liked_audio_files:
-            raise ValueError('Audio File is not in the liked list, please check the spelling of your Audio File')
-        self._liked_audio_files.remove(audio_file)
+        """Unlikes an audio file by removing it from the liked audio files list"""
+        if isinstance(audio_file, AudioFile):
+            if audio_file in self._liked_audio_files:
+                self._liked_audio_files.remove(audio_file)
+            else:
+                print('Audio file is not liked')
+        else:
+            raise ValueError('Argument is not an audio file')
+
 
     def search(self, search_term: str):
         """Removes Audio File from the "Liked" list"""
         pass
 
     def get_number_of_audio_files(self) -> int:
-        """Retrieves the total number of Audio Files in the Library instance"""
+
         return len(self._audio_files)
 
-    def list_audio_file(self) -> list:
-        """Lists all the Audio Files"""
-        pass
+    def list_audio_file(self):
+        num = 1
+        if len(self._audio_files) > 0:
+            print('Your current audio files are:')
+            for file in self._audio_files:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You currently have no audio files')
 
-    def list_podcasts(self) -> list:
-        """Lists all the Podcasts"""
-        pass
 
-    def list_songs(self) -> list:
-        """Lists all the Songs"""
-        posn = 0
-        song_list = []
-        print("   {:20} {:20} {:20} {}".format('Title', 'Artist', 'Album', 'Runtime'))
-        while posn < len(self._songs):
-            current_song = self._songs[posn]
-            current_song = current_song.meta_data()
-            number = posn + 1
-            title = current_song['title']
-            artist = current_song['artist']
-            album = current_song['album']
-            runtime = current_song['runtime']
-            song_list.append("{}. {:<20} {:<20} {:<20} {}".format(number, title, artist, album, runtime))
-            posn += 1
-        return song_list
+    def list_songs(self):
+        num = 1
+        if len(self._songs) > 0:
+            print('Your current audio files are:')
+            for file in self._songs:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You currently have no songs')
 
+    def list_podcasts(self):
+        num = 1
+        if len(self._podcasts) > 0:
+            print('Your current audio files are:')
+            for file in self._podcasts:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You currently have no podcasts')
+
+
+    # should we just delete this as we have a __str__ method?
     def get_library_info(self) -> str:
         """Formatted string of Audio Files, Podcasts, and Song count"""
         pass
 
-    def get_recently_played(self) -> list:
-        """Retrieves a list of the most recently played Audio Files in order"""
-        pass
 
-    """ROY IS A BIG SLUT"""
+    def get_recently_played(self):
+        num = 1
+        if len(self._recently_played) > 0:
+            print('Your recently played audio files are:')
+            for file in self._recently_played:
+                print('{}. {}'.format(num, file.title))
+                num += 1
+        else:
+            print('You have no recently played songs')
+
+    """ROY HAS A BIG DELICIOUS COCK"""
+
