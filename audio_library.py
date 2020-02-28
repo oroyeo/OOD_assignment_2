@@ -163,7 +163,6 @@ class AudioLibrary:
         else:
             raise ValueError('Argument is not an audio file')
 
-
     def search(self, search_term: str) -> int:
         """Finds a song by title, artist, or album within this library instance"""
         intersect_set = set()
@@ -213,7 +212,6 @@ class AudioLibrary:
         else:
             print('You currently have no audio files')
 
-
     def list_songs(self):
         num = 1
         if len(self._songs) > 0:
@@ -235,12 +233,6 @@ class AudioLibrary:
             print('You currently have no podcasts')
 
 
-    # should we just delete this as we have a __str__ method?
-    def get_library_info(self) -> str:
-        """Formatted string of Audio Files, Podcasts, and Song count"""
-        pass
-
-
     def get_recently_played(self):
         num = 1
         if len(self._recently_played) > 0:
@@ -251,5 +243,4 @@ class AudioLibrary:
         else:
             print('You have no recently played songs')
 
-    """ROY HAS A BIG DELICIOUS COCK"""
 
