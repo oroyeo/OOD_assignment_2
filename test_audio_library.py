@@ -48,7 +48,6 @@ class TestLibrary(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.library.name = 5
 
-
     def test_artist_valid(self):
         """TP-030A Tests for a valid paramenter"""
         self.assertEqual(type(self.library.artists), list, "library artists should be type list")

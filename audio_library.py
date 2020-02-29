@@ -163,9 +163,8 @@ class AudioLibrary:
         else:
             raise ValueError('Argument is not an audio file')
 
-
-    def search(self, search_term: str) -> int:
-        """Finds a song by title, artist, or album within this library instance"""
+    def search_title_artist(self, search_term: str) -> str:
+        """Finds a song by title or artist within this library instance"""
         intersect_set = set()
 
         if search_term is None:
@@ -173,7 +172,6 @@ class AudioLibrary:
         else:
             title_set = set()
             artist_set = set()
-            album_set = set()
             posn = 0
             while posn < len(self._audio_files):
                 current_file = self._audio_files[posn]
@@ -181,15 +179,11 @@ class AudioLibrary:
                     title_set.add(current_file)
                 elif type(search_term) == str and search_term.lower() == current_file.artist.lower():
                     artist_set.add(current_file)
-                elif type(search_term) == str and search_term.lower() == current_file.album.lower():
-                    album_set.add(current_file)
                 posn += 1
 
             for audio_file in title_set:
                 intersect_set.add(audio_file)
             for audio_file in artist_set:
-                intersect_set.add(audio_file)
-            for audio_file in album_set:
                 intersect_set.add(audio_file)
             intersect_list = list(intersect_set)
             intersect_list.sort()
@@ -197,7 +191,7 @@ class AudioLibrary:
             if len(intersect_list) == 0:
                 raise ValueError('No file found matching search term')
             else:
-                return self._audio_files.index(intersect_list[0])
+                return "{} appears at {} position".format(search_term, self._audio_files.index(intersect_list[0]))
 
     def get_number_of_audio_files(self) -> int:
 
@@ -212,7 +206,6 @@ class AudioLibrary:
                 num += 1
         else:
             print('You currently have no audio files')
-
 
     def list_songs(self):
         num = 1
@@ -235,12 +228,6 @@ class AudioLibrary:
             print('You currently have no podcasts')
 
 
-    # should we just delete this as we have a __str__ method?
-    def get_library_info(self) -> str:
-        """Formatted string of Audio Files, Podcasts, and Song count"""
-        pass
-
-
     def get_recently_played(self):
         num = 1
         if len(self._recently_played) > 0:
@@ -251,5 +238,4 @@ class AudioLibrary:
         else:
             print('You have no recently played songs')
 
-    """ROY HAS A BIG DELICIOUS COCK"""
 
