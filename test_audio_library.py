@@ -3,6 +3,7 @@ import unittest
 # from podcast import Podcast
 # from audio_file import AudioFile
 import inspect
+from audio_library import AudioLibrary
 from abc import abstractmethod
 
 class TestLibrary(unittest.TestCase):
@@ -17,7 +18,7 @@ class TestLibrary(unittest.TestCase):
     def setUp(self):
         """Sets up each test by initializing default objects"""
         self.logPoint()
-        self.library = Library(args)
+        self.library = AudioLibrary("test")
 
     def tearDown(self):
         """Introduces an end log point for each test"""
@@ -54,7 +55,7 @@ class TestLibrary(unittest.TestCase):
     
     def test_add_audio_file(self):
         """TP-040A Tests for a valid parameter"""
-        self.library.add_audio_file(test_audio_file)
+        self.library.add_audio_file()
         self.assertIn(test_audio_file, self.library.list_audio_files(), "test_audio_file should be added to Library")
 
     def test_add_audio_file_invalid(self):
@@ -169,7 +170,7 @@ class TestLibrary(unittest.TestCase):
 
     def test_get_recently_played(self):
         """TP-106A Tests for a valid return of the recently played list"""
-        self.assertEqual(type(self.library.get_recently_played), list, 'should be a list')
+        self.assertEqual(type(self.library.get_recently_played), str, "Should be a string")
 
 
 if __name__ == '__main__':
